@@ -1,0 +1,22 @@
+name: 🚀 Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - index.html  # Only trigger when index.html is changed
+
+jobs:
+  push-to-pages:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo and download to vm
+      uses: actions/checkout@v4
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./
